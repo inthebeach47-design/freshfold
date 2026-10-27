@@ -10,12 +10,12 @@
   <a class="skip-link" href="#quotation-builder">Skip to quotation builder</a>
   <header class="app-header no-print">
     <div class="brand-lockup"><img class="brand-logo" src="data/logobg.png" alt="FreshFold Laundry"><div><h1>Quotation System</h1><p class="tagline">Fresh. Clean. Delivered.</p></div></div>
-    <div class="header-actions"><div class="contact-pill"><span>Call / WhatsApp</span><strong>0100677971</strong></div><button id="new-quote" class="ghost-button" type="button">New Quote</button><button id="saved-quotes" class="secondary-button" type="button">Saved Quotes</button></div>
+    <div class="header-actions"><div class="contact-pill"><span>Call / WhatsApp</span><strong>0100677971</strong></div><button id="new-quote" class="ghost-button" type="button">New Quote</button></div>
   </header>
 
-  <div id="welcome" class="welcome no-print"><span>Create a quotation in four simple steps: enter the customer details, add services, review the total, then save or send the quote.</span><button id="dismiss-welcome" type="button" aria-label="Dismiss welcome message">×</button></div>
+  <div id="welcome" class="welcome no-print"><span>Create and edit a quotation, preview it offline, then save it as a PDF when ready.</span><button id="dismiss-welcome" type="button" aria-label="Dismiss welcome message">×</button></div>
   <nav class="progress no-print" aria-label="Quotation progress">
-    <a class="active" href="#customer-section"><b>1</b><span>Customer</span></a><a href="#services-section"><b>2</b><span>Services</span></a><a href="#review-section"><b>3</b><span>Review</span></a><a href="#actions-section"><b>4</b><span>Save or send</span></a>
+    <a class="active" href="#customer-section"><b>1</b><span>Customer</span></a><a href="#services-section"><b>2</b><span>Services</span></a><a href="#review-section"><b>3</b><span>Review</span></a><a href="#actions-section"><b>4</b><span>Preview or PDF</span></a>
   </nav>
 
   <main id="quotation-builder" class="app-shell">
@@ -61,9 +61,9 @@
       </section>
 
       <section id="actions-section" class="card actions-card step-card no-print">
-        <div><p class="step-label">Step 4</p><h2>Save or Send Quote</h2><p class="helper">Save a copy, preview it, or send it to the customer.</p></div>
-        <div class="quote-actions"><button id="save-quote" class="primary-button" type="button">Save Quote</button><button id="preview-quote" class="ghost-button" type="button">Preview Quote</button><button id="print-quote" class="ghost-button output-action" type="button">Print</button><button id="download-pdf" class="ghost-button output-action" type="button">Save as PDF</button><button id="share-whatsapp" class="whatsapp-button output-action" type="button">Share on WhatsApp</button></div>
-        <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
+        <div><p class="step-label">Step 4</p><h2>Preview or Download</h2><p class="helper">Your quotation stays in this browser tab. Preview and edit it before exporting; nothing is saved or sent.</p></div>
+        <div class="quote-actions"><button id="preview-quote" class="ghost-button" type="button">Offline Preview</button><button id="print-quote" class="ghost-button output-action" type="button">Print</button><button id="download-pdf" class="primary-button output-action" type="button">Save as PDF</button></div>
+        <p class="helper">PDF export opens your browser’s print dialog. Choose “Save as PDF”.</p>
       </section>
 
       <section class="preview-card print-only"><div id="quote-preview" class="print-sheet"></div></section>
@@ -88,9 +88,6 @@
 
   <dialog id="custom-dialog" class="app-dialog"><form id="custom-item-form" method="dialog" novalidate><div class="dialog-head"><div><p class="eyebrow">Custom service</p><h2>Add a service</h2></div><button class="icon-button" type="button" data-close aria-label="Close custom service dialog">×</button></div><div class="form-grid dialog-grid"><label>Item name<input id="custom-item-name" placeholder="Service name"></label><label>Category<input id="custom-category" placeholder="Category"></label><label>Unit type<select id="custom-unit-type"><option>piece</option><option>kg</option><option>set</option><option>meter</option><option value="custom">custom</option></select></label><label id="custom-form-unit-wrap" class="hidden">Custom unit<input id="custom-form-unit" placeholder="Unit name"></label><label>Quantity<input id="custom-quantity" type="number" min="0.01" step="0.01" value="1"></label><label>Unit price<input id="custom-price" type="number" min="0" step="1" placeholder="KES"></label><label class="wide">Note <span class="optional">Optional</span><input id="custom-note" placeholder="Item note"></label></div><div id="custom-form-error" class="form-error" role="alert"></div><div class="dialog-actions"><button class="ghost-button" value="cancel" type="button" data-close>Cancel</button><button class="primary-button" value="default" type="submit">Add custom item</button></div></form></dialog>
   <dialog id="preview-dialog" class="app-dialog preview-dialog"><div class="dialog-head no-print"><div><p class="eyebrow">Preview</p><h2>Quotation</h2></div><button class="icon-button" data-close aria-label="Close quotation preview">×</button></div><div id="modal-preview" class="print-sheet"></div><div class="dialog-actions no-print"><button class="ghost-button" data-close>Close</button><button id="preview-print" class="primary-button">Print</button></div></dialog>
-  <dialog id="saved-dialog" class="app-dialog saved-dialog"><div class="dialog-head"><div><p class="eyebrow">History</p><h2>Saved Quotes</h2></div><button class="icon-button" data-close aria-label="Close saved quotations">×</button></div><div class="saved-tools"><label>Search<input id="saved-search" type="search" placeholder="Name, phone, or quote number"></label><label>Date<input id="saved-date" type="date"></label></div><div id="saved-list" class="saved-list"></div></dialog>
-  <dialog id="recovery-dialog" class="app-dialog small-dialog"><h2>An unfinished quotation was found.</h2><p>Would you like to continue where you left off?</p><div class="dialog-actions"><button id="discard-draft" class="ghost-button">Start a new quote</button><button id="continue-draft" class="primary-button">Continue quotation</button></div></dialog>
-  <dialog id="phone-dialog" class="app-dialog small-dialog"><form id="phone-form"><h2>WhatsApp number</h2><p>Enter the customer’s Kenyan WhatsApp number.</p><label>Phone number<input id="share-phone" type="tel" inputmode="tel" placeholder="0712 345 678"></label><div id="share-phone-error" class="field-error"></div><div class="dialog-actions"><button type="button" class="ghost-button" data-close>Cancel</button><button class="whatsapp-button" type="submit">Continue</button></div></form></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="data/services.js"></script><script src="app.js"></script>
 </body>
